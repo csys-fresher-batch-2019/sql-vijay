@@ -5,13 +5,15 @@
 
 ### user account
 
+``` sql
+
 create table acc(
 user_id int,
 username varchar2(30) not null,
 birth_date date notnull,
 constraint user_pk primary key(user_id);
 );
-
+ ```
 create table mail(
 user_id int,
 mail_id varchar2(50),
