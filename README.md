@@ -14,16 +14,18 @@ birth_date date notnull,
 constraint user_pk primary key(user_id);
 );
  ```
+ ```sql
 create table mail(
 user_id int,
 mail_id varchar2(50),
 constraint mail_pk primary key(mail_id)
 );
-
+```
+```sql
 create table password(
 user_id int,
 password varchar2(20) ,
 constraint pass_pk primary key(password)
 );
-
+```
 
