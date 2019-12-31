@@ -63,5 +63,12 @@ insert into (medicine_name,quantity)values('calicop',150);
 insert into (medicine_name,quantity)values('nerozens',175);
 insert into (medicine_name,quantity)values('eyeons',200);
 
+| medicine_name | quantity |
+|---------------|----------|
+| zophonile     | 250      |
+| calicop       | 150      |
+| nerozens      | 175      |
+| eyeons        | 200      |
+
 ```
 
