@@ -1,20 +1,18 @@
-# instagram app
+# Hospital management system
 
-## Features
-*users can create a new account 
-
-### user account
+### Feature 1: view the list of patients admitted
 
 ``` sql
 
-create table acc(
-user_id int,
-username varchar2(30) not null,
-birth_date date not null,
-mail_id varchar2(50) not null UNIQUE,
-password varchar2(20),
+create table patient(
+patient_id int unique not null,
+patientname varchar2(50) not null,
+age not null,
+phone_no unique;
+admitted_for varchar2(20),
 constraint user_pk primary key(user_id)
 );
  ```
+ ### feature 2: list of doctors
 
 
