@@ -30,6 +30,7 @@ insert into patient(patient_id,patientname,age,phone_no,admitted_for) values(103
  ### feature 2: list of doctors
 
 ```sql
+
 create table doctor(
 doctor_id varchar2(10) unique not null,
 doctorname varchar2(50) not null,
@@ -49,5 +50,18 @@ insert into doctors(doctor_id,doctorname,specialization)values('D04','harish','O
 | D04       | harish     | Ophthalmologist |
 
 ```
+### medicine shop
+```sql
 
+create table medicine(
+medicine_name varchar2(20),
+quantity number 
+);
+
+insert into (medicine_name,quantity)values('zophonile',250);
+insert into (medicine_name,quantity)values('calicop',150);
+insert into (medicine_name,quantity)values('nerozens',175);
+insert into (medicine_name,quantity)values('eyeons',200);
+
+```
 
