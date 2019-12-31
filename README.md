@@ -21,12 +21,12 @@ insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_
 values(102,'jim',46,6807544789,'kidney disease','Nephrologist');
 insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc) values(103,'harry',48,9807544789,'cataracts','Ophthalmologist');
 
-| patient_id | patientname | age | phone_no   | admitted_for   |
-|------------|-------------|-----|------------|----------------|
-| 100        | john        | 40  | 8807544789 | stomach flu    |
-| 101        | rock        | 42  | 7807544789 | TB             |
-| 102        | jim         | 46  | 6807544789 | kidney disease |
-| 103        | harry       | 48  | 9807544789 | cataracts      |
+| patient_id | patientname | age | phone_no   | admitted_for   | consulting_doc  |
+|------------|-------------|-----|------------|----------------|-----------------|
+| 100        | john        | 40  | 8807544789 | stomach flu    | Pediatrician    |
+| 101        | rock        | 42  | 7807544789 | TB             | Cardiologist    |
+| 102        | jim         | 46  | 6807544789 | kidney disease | Nephrologist    |
+| 103        | harry       | 48  | 9807544789 | cataracts      | Ophthalmologist |
 
  ```
  ### feature 2: list of doctors
