@@ -16,10 +16,12 @@ create sequence patient_id start with increment by 1;
 
 insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc)
 values(100,'john',40,8807544789,' stomach flu','Pediatrician');
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc) values(101,'rock',42,7807544789,'TB','Cardiologist');
+insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc)
+values(101,'rock',42,7807544789,'TB','Cardiologist');
 insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc)
 values(102,'jim',46,6807544789,'kidney disease','Nephrologist');
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc) values(103,'harry',48,9807544789,'cataracts','Ophthalmologist');
+insert into patient(patient_id,patientname,age,phone_no,admitted_for,consulting_doc)
+values(103,'harry',48,9807544789,'cataracts','Ophthalmologist');
 
 | patient_id | patientname | age | phone_no   | admitted_for   | consulting_doc  |
 |------------|-------------|-----|------------|----------------|-----------------|
