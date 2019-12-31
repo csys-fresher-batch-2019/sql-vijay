@@ -20,11 +20,11 @@ insert into patient(patient_id,patientname,age,phone_no,admitted_for) values(103
  ### feature 2: list of doctors
 
 ```sql
-create table patient(
-patient_id int unique not null,
-patientname varchar2(50) not null,
-age int not null,
-phone_no int unique;
-admitted_for varchar2(20)
+create table doctor(
+doctor_id int unique not null,
+doctorname varchar2(50) not null,
+specialization varchar2(20) not null
 );
+
+
 
