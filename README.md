@@ -1,6 +1,6 @@
 ## HOSPITAL MANAGEMENT SYSTEM
 
-### patient details
+### feature 1: patient details
 
 ```sql
 create table patient(
@@ -32,7 +32,7 @@ values(103,'harry',48,9807544789,'cataracts','S04');
 | 103        | harry       | 48  | 9807544789 | cataracts      | S04               |
 ```
 
-### list of doctors available for specific specializations: 
+### feature2: list of doctors available for specific specializations: 
 ```sql
 create table doctors(
 doctor_id varchar2(10)  primary key,
@@ -58,7 +58,7 @@ values('D04','harish','S04');
 | D04       | harish     | S04               |
 
 ```
-### list of specializations:
+### feature 3: list of specializations:
 ```sql
 
 create table specializations(
@@ -79,7 +79,7 @@ insert into specializations values(S04,'Ophthalmologist');
 | S04                | Ophthalmologist     |
 
 ```
-### list of medicines available:
+### feature 4: list of medicines available:
 ```sql
 
 create table medicine(
