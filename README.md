@@ -1,8 +1,8 @@
 ## HOSPITAL MANAGEMENT SYSTEM
 
-```sql
 ### patient details
 
+```sql
 create table patient(
 patient_id number not null primary key,
 patientname varchar2(50) not null,
@@ -31,8 +31,9 @@ values(103,'harry',48,9807544789,'cataracts','S04');
 | 102        | jim         | 46  | 6807544789 | kidney disease | S03               |
 | 103        | harry       | 48  | 9807544789 | cataracts      | S04               |
 ```
-```sql
+
 ### list of doctors available for specific specializations: 
+```sql
 create table doctors(
 doctor_id varchar2(10)  primary key,
 doctorname varchar2(50) not null,
@@ -57,8 +58,9 @@ values('D04','harish','S04');
 | D04       | harish     | S04               |
 
 ```
-```sql
 ### list of specializations:
+```sql
+
 create table specializations(
 specializations_id varchar2(10) primary key,
 specialization_name varchar2(20) not null
@@ -77,8 +79,8 @@ insert into specializations values(S04,'Ophthalmologist');
 | S04                | Ophthalmologist     |
 
 ```
-```sql
 ### list of medicines available:
+```sql
 
 create table medicine(
 medicine_name varchar2(20) primary key,
