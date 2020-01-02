@@ -1,3 +1,5 @@
+## HOSPITAL MANAGEMENT SYSTEM
+
 ```sql
 ### patient details
 
