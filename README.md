@@ -187,52 +187,38 @@ select * from tablets;
 
 ```
 ### select patientname from patient where age>40;
-
+```
 | patientname       |
 |-------------------|
 | jim               | 
 | rock              | 
 | harry             |                
-
+```
 ### select * from patient where patientname = 'john';
-
+```
 | patient_id | patientname | age | phone_no   | admitted_for   | specialization_id |
 |------------|-------------|-----|------------|----------------|-------------------|
 | 100        | john        | 10  | 8807544789 | stomach flu    | S01               |
 
-
+````
 ### select patientname from patient where ADMITTED_FOR ='TB';
-
+```
 | patientname       |
 |-------------------|
 | rock              | 
 
-
+```
 ### SELECT doctorname from doctors where specialization_id ='S02';
-
+```
 | doctorname       |
 |------------------|
 | verti            | 
-
+```
 ### select patient.*,doctors.* from patient inner join doctors on patient.specialization_id = doctors.specialization_id where patient_id=100;
-
+```
 | patient_id | patientname | age | phone_no   | admitted_for   | specialization_id | doctor_id | doctorname | specialization_id |
 |------------|-------------|-----|------------|----------------|-------------------|-----------|------------|-------------------|
 | 100        | john        | 10  | 8807544789 | stomach flu    | S01               | D01       | suraj      | S01               |
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
