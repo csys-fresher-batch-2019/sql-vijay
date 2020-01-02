@@ -25,7 +25,7 @@ insert into patient(patient_id,patientname,age,phone_no,admitted_for,specializat
 values(patient_id.nextval,'harry',48,9807544789,'cataracts','S04');
 
 select * from patient;
-
+```
 | patient_id | patientname | age | phone_no   | admitted_for   | specialization_id |
 |------------|-------------|-----|------------|----------------|-------------------|
 | 100        | john        | 10  | 8807544789 | stomach flu    | S01               |
@@ -33,7 +33,7 @@ select * from patient;
 | 102        | jim         | 46  | 6807544789 | kidney disease | S03               |
 | 103        | harry       | 48  | 9807544789 | cataracts      | S04               |
 
-```
+
 
 ### feature2: list of doctors available for specific specializations: 
 
@@ -56,7 +56,7 @@ insert into doctors(doctor_id,doctorname,specialization_id)
 values('D04','harish','S04');
 
 select * from doctors;
-
+```
 | doctor_id | doctorname | specialization_id |
 |-----------|------------|-------------------|
 | D01       | suraj      | S01               |
@@ -64,7 +64,7 @@ select * from doctors;
 | D03       | tamizh     | S03               |
 | D04       | harish     | S04               |
 
-```
+
 ### feature 3: list of specializations:
 ```sql
 
@@ -80,7 +80,7 @@ insert into specializations values('S04','Ophthalmologist');
 
 select * from specializations;
 
-
+```
 | specializations_id | specialization_name |
 |--------------------|---------------------|
 | S01                | pediatrician        |
@@ -88,7 +88,7 @@ select * from specializations;
 | S03                | Nephrologist        |
 | S04                | Ophthalmologist     |
 
-```
+
 ### feature 4: list of medicines available:
 ```sql
 
@@ -105,7 +105,7 @@ insert into tablets(medicine_name,quantity,price)values('nerozens',175,8);
 insert into tablets(medicine_name,quantity,price)values('eyeons',200,9);
 
 select * from tablets;
-
+```
 
 | medicine_name | quantity | price          |
 |---------------|----------|----------------|
@@ -114,7 +114,7 @@ select * from tablets;
 | nerozens      | 175      |    8           |
 | eyeons        | 200      |    9           |
 
-```
+
 
 ### feature 5: prescription given to the patient
 
@@ -142,7 +142,7 @@ where medicine_name = (select medicine_name from tablets where medicine_name = p
 
 select * from prescription;
 
-
+```
 | patientname | medicine_name | no_tablets | price |
 |-------------|---------------|------------|-------|
 | john        | zophonile     | 10         | 100   |
@@ -150,7 +150,7 @@ select * from prescription;
 | harry       | nerozens      | 10         | 80    |
 | jim         | eyeons        | 10         | 90    |
 
-```
+
 ### feature 7: update the stock
 
 ```sql
@@ -159,7 +159,7 @@ set t.quantity = t.quantity-(select sum(p.no_tablets) from prescription p where 
 where medicine_name IN (select medicine_name from prescription p where p.medicine_name=t.medicine_name);
 
 select * from tablets;
-
+```
 | medicine_name | quantity | price |
 |---------------|----------|-------|
 | zophonile     | 240      | 10    |
@@ -167,7 +167,7 @@ select * from tablets;
 | nerozens      | 165      | 8     |
 | eyeons        | 190      | 9     |
 
-```
+
 ### feature 8: update new stock :
 
 ```sql
@@ -177,6 +177,7 @@ update tablets
 set quantity=quantity+100
 where medicine_name='eyeons';
 select * from tablets;
+```
 
 | medicine_name | quantity | price |
 |---------------|----------|-------|
@@ -185,40 +186,40 @@ select * from tablets;
 | nerozens      | 165      | 8     |
 | eyeons        | 290      | 9     |
 
-```
+
 ### select patientname from patient where age>40;
-```
+
 | patientname       |
 |-------------------|
 | jim               | 
 | rock              | 
 | harry             |                
-```
+
 ### select * from patient where patientname = 'john';
-```
+
 | patient_id | patientname | age | phone_no   | admitted_for   | specialization_id |
 |------------|-------------|-----|------------|----------------|-------------------|
 | 100        | john        | 10  | 8807544789 | stomach flu    | S01               |
 
-````
+
 ### select patientname from patient where ADMITTED_FOR ='TB';
-```
+
 | patientname       |
 |-------------------|
 | rock              | 
 
-```
+
 ### SELECT doctorname from doctors where specialization_id ='S02';
-```
+
 | doctorname       |
 |------------------|
 | verti            | 
-```
+
 ### select patient.*,doctors.* from patient inner join doctors on patient.specialization_id = doctors.specialization_id where patient_id=100;
-```
+
 | patient_id | patientname | age | phone_no   | admitted_for   | specialization_id | doctor_id | doctorname | specialization_id |
 |------------|-------------|-----|------------|----------------|-------------------|-----------|------------|-------------------|
 | 100        | john        | 10  | 8807544789 | stomach flu    | S01               | D01       | suraj      | S01               |
 
 
-```
+
