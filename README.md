@@ -151,9 +151,3 @@ foreign key(doctor_id) references doctorlist(doctor_id)
 | doctor_id | rating | 
 |-----------|--------|
 | 1002      |     9  |
-
-
-
-
-
-
