@@ -17,9 +17,10 @@ create sequence patient_id start with 40 increment by 1;
 
 ```
 
-patient_id | patientname | adharcard no     | dob        | gender | phone no   | patientreg_date  |
-40         |  Manoj      | 1092837465091283 | 12-12-1999 | M      | 8976543456 | 20-12-2019       |
-41         |  aravinth   | 7845372891029384 | 16-08-1998 | M      | 7382910348 | 25-12-2019       |
+| patient_id | patientname |     adharcard no | dob        | gender | phone no   | patientreg_date |
+|:----------:|-------------|-----------------:|------------|--------|------------|-----------------|
+| 40         | Manoj       | 1092837465091283 | 12-12-1999 | M      | 8976543456 | 20-12-2019      |
+| 41         | aravinth    | 7845372891029384 | 16-08-1998 | M      | 7382910348 | 25-12-2019      |
 
 ### feature 2: Appointment list
 ```
