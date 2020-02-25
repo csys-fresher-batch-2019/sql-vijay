@@ -1,225 +1,159 @@
 ## HOSPITAL MANAGEMENT SYSTEM
 
-### feature 1: patient details
+### feature 1: patient registration
 
 ```sql
-create table patient(
-patient_id number not null primary key,
+create table patientReg(
+patient_id number primary key ,
 patientname varchar2(50) not null,
-age number not null,
-phone_no number unique,
-admitted_for varchar2(20) not null,
-specialization_id varchar2(20),
-foreign key (specialization_id) references specializations(specializations_id)
+adharcardno number ,
+dob date,
+gender varchar2(20) ,
+phoneno number not null,
+patientreg_date date 
 );
 
-create sequence patient_id start  with 100 increment by 1;
+create sequence patient_id start with 40 increment by 1;
 
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,specialization_id)
-values(patient_id.nextval,'john',10,8807544789,' stomach flu','S01');
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,specialization_id)
-values(patient_id.nextval,'rock',42,7807544789,'TB','S02');
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,specialization_id)
-values(patient_id.nextval,'jim',46,6807544789,'kidney disease','S03');
-insert into patient(patient_id,patientname,age,phone_no,admitted_for,specialization_id)
-values(patient_id.nextval,'harry',48,9807544789,'cataracts','S04');
-
-select * from patient;
 ```
-| patient_id | patientname | age | phone_no   | admitted_for   | specialization_id |
-|------------|-------------|-----|------------|----------------|-------------------|
-| 100        | john        | 10  | 8807544789 | stomach flu    | S01               |
-| 101        | rock        | 42  | 7807544789 | TB             | S02               |
-| 102        | jim         | 46  | 6807544789 | kidney disease | S03               |
-| 103        | harry       | 48  | 9807544789 | cataracts      | S04               |
+
+patient_id | patientname | adharcard no     | dob        | gender | phone no   | patientreg_date  |
+40         |  Manoj      | 1092837465091283 | 12-12-1999 | M      | 8976543456 | 20-12-2019       |
+41         |  aravinth   | 7845372891029384 | 16-08-1998 | M      | 7382910348 | 25-12-2019       |
+
+### feature 2: Appointment list
+```
+create table appointment(     
+app_id number primary key,
+patient_id number not null,
+purpose varchar2(50)not null,
+doctor_id number not null,
+app_date date not null,
+app_time varchar2(20) not null,
+status varchar2(50) default 'pending',
+visited varchar2(10) default 'no',
+foreign key (patient_id) references patientReg(patient_id),
+foreign key (doctor_id) references doctorlist(doctor_id)  
+);
 
 
+insert into appointment(app_id,patient_id,purpose,doctor_id,app_date,app_time)values(657483,40,'fever',1001,TO_DATE('2020-02-20','yyyy-mm-dd'),'10:00' );
+```
 
-### feature2: list of doctors available for specific specializations: 
+| app_id | patient_id | purpose      | doctor_id   | app_date   | app_time |
+|--------|------------|--------------|-------------|------------|----------|
+|657483  | 40         |heart problem |    102      |2020-02-20  | 10:00    |
+
+
+### feature 3: list of doctors available for specific specializations: 
 
 ```sql
 
-create table doctors(
-doctor_id varchar2(10)  primary key,
-doctorname varchar2(50) not null,
-specialization_id varchar2(20),
-foreign key (specialization_id) references specializations(specializations_id)
+drop table doctorlist;
+create table doctorlist(
+doctor_id number primary key,
+doctor_name varchar2(40) not null,
+splzation_id number not null,
+consultingfee number not null,
+foreign key (splzation_id) references splzations(splzation_id)
 );
 
-insert into doctors(doctor_id,doctorname,specialization_id)
-values('D01','suraj','S01');
-insert into doctors(doctor_id,doctorname,specialization_id)
-values('D02','vetri','S02');
-insert into doctors(doctor_id,doctorname,specialization_id)
-values('D03','tamizh','S03');
-insert into doctors(doctor_id,doctorname,specialization_id)
-values('D04','harish','S04');
+insert into doctorlist(doctor_id,doctor_name,splzation_id,consultingfee) values(1002,'suraj',102,300);
+insert into doctorlist(doctor_id,doctor_name,splzation_id,consultingfee) values(1001,'kumar',101,500);
 
-select * from doctors;
+
+select * from doctorlist;
 ```
-| doctor_id | doctorname | specialization_id |
-|-----------|------------|-------------------|
-| D01       | suraj      | S01               |
-| D02       | vetri      | S02               |
-| D03       | tamizh     | S03               |
-| D04       | harish     | S04               |
+| doctor_id | doctorname | specialization_id | consultingfee |
+|-----------|------------|-------------------|---------------|
+| 1001      | suraj      | 101               |    300        |
+| 1002      | vetri      | 102               |    500        |
 
 
-### feature 3: list of specializations:
+
+### feature 4: list of specializations:
 ```sql
 
-create table specializations(
-specializations_id varchar2(10) primary key,
-specialization_name varchar2(20) not null
+create table splzations(
+splzation_id number primary key,
+splzation_name varchar2(20) not null
 );
 
-insert into specializations values('S01','pediatrician');
-insert into specializations values('S02','Cardiologist');
-insert into specializations values('S03','Nephrologist');
-insert into specializations values('S04','Ophthalmologist');
+insert into splzations values('101','pediatrician');
+insert into splzations values('102','Cardiologist');
 
-select * from specializations;
+select * from splzations;
 
 ```
-| specializations_id | specialization_name |
-|--------------------|---------------------|
-| S01                | pediatrician        |
-| S02                | Cardiologist        |
-| S03                | Nephrologist        |
-| S04                | Ophthalmologist     |
+| splzation_id | splzation_name |
+|--------------|----------------|
+| 101          | pediatrician   |
+| 102          | Cardiologist   |
 
 
-### feature 4: list of medicines available:
+
+### feature 5: Rating :
 ```sql
 
-create table tablets(
-medicine_name varchar2(20),
-quantity number not null ,
-price number not null,
-constraint qty_qty check (quantity>0)
+create table rating(
+patient_id number not null,
+doctor_id number not null,
+rating float not null,
+foreign key (patient_id) references patientReg(patient_id),
+foreign key (doctor_id) references doctorlist(doctor_id)
 );
 
-insert into tablets(medicine_name,quantity,price)values('zophonile',250,10);
-insert into tablets(medicine_name,quantity,price)values('calicop',150,6);
-insert into tablets(medicine_name,quantity,price)values('nerozens',175,8);
-insert into tablets(medicine_name,quantity,price)values('eyeons',200,9);
-
-select * from tablets;
+select * from rating
 ```
 
-| medicine_name | quantity | price          |
+| patient_id    | doctor_id| rating         |
 |---------------|----------|----------------|
-| zophonile     | 250      |    10          |
-| calicop       | 150      |    6           |
-| nerozens      | 175      |    8           |
-| eyeons        | 200      |    9           |
+| 40            | 1002     |    10          |
+| 41            | 1002     |    8           |
 
 
 
-### feature 5: prescription given to the patient
+
+### feature 6: prescription given to the patient
 
 ```sql
 create table prescription(
-patientname varchar2(50),
-medicine_name varchar2(20) not null ,
-no_tablets number not null,
-price number 
+prescription_id number primary key,
+patient_name varchar2(50) not null,
+doctorname varchar2(50) not null,
+comments varchar2(100) not null,
+total_amt number
 );
 
-insert into prescription (medicine_name,no_tablets,patientname) values('zophonile',10,'john');
-insert into prescription (medicine_name,no_tablets,patientname) values('calicop',10,'rock');
-insert into prescription (medicine_name,no_tablets,patientname) values('nerozens',10,'harry');
-insert into prescription (medicine_name,no_tablets,patientname) values('eyeons',10,'jim');
+create sequence prescription_id start with 1 increment by 1;
+
+
+insert into prescription(prescription_id,patient_name,doctorname,comments)values(prescription_id.nextval,'manoj','suraj','take medicine regularly');
+
 
 ```
-### feature 6: updating the price column in prescription:
 
-```sql
-update prescription p
-SET p.price = p.no_tablets * (select t.price from tablets t where p.medicine_name = t.medicine_name)
-where medicine_name = (select medicine_name from tablets where medicine_name = p.medicine_name);
+| prescription_id | patient_name | doctorname | comments                | total_amt |
+|-----------------|--------------|-----------:|-------------------------|-----------|
+| 1               | Manoj        |      suraj | take medicine regularly | 500       |
 
 
-select * from prescription;
+
+### feature 7: Overall rating:
+```
+create table overallrating(
+doctor_id number,
+rating float,
+foreign key(doctor_id) references doctorlist(doctor_id)
+);
 
 ```
-| patientname | medicine_name | no_tablets | price |
-|-------------|---------------|------------|-------|
-| john        | zophonile     | 10         | 100   |
-| rock        | calicop       | 10         | 60    |
-| harry       | nerozens      | 10         | 80    |
-| jim         | eyeons        | 10         | 90    |
+| doctor_id | rating | 
+|-----------|--------|
+| 1002      |     9  |
 
 
-### feature 7: update the stock
 
-```sql
-update tablets t
-set t.quantity = t.quantity-(select sum(p.no_tablets) from prescription p where p.medicine_name = t.medicine_name)
-where medicine_name IN (select medicine_name from prescription p where p.medicine_name=t.medicine_name);
-
-select * from tablets;
-```
-| medicine_name | quantity | price |
-|---------------|----------|-------|
-| zophonile     | 240      | 10    |
-| calicop       | 140      | 6     |
-| nerozens      | 165      | 8     |
-| eyeons        | 190      | 9     |
-
-
-### feature 8: update new stock :
-
-```sql
-
---- update new stock
-update tablets
-set quantity=quantity+100
-where medicine_name='eyeons';
-select * from tablets;
-```
-
-| medicine_name | quantity | price |
-|---------------|----------|-------|
-| zophonile     | 240      | 10    |
-| calicop       | 140      | 6     |
-| nerozens      | 165      | 8     |
-| eyeons        | 290      | 9     |
-
-
-### select patientname from patient where age>40;
-
-| patientname       |
-|-------------------|
-| jim               | 
-| rock              | 
-| harry             |                
-
-### select * from patient where patientname = 'john';
-
-| patient_id | patientname | age | phone_no   | admitted_for   | specialization_id |
-|------------|-------------|-----|------------|----------------|-------------------|
-| 100        | john        | 10  | 8807544789 | stomach flu    | S01               |
-
-
-### select patientname from patient where ADMITTED_FOR ='TB';
-
-| patientname       |
-|-------------------|
-| rock              | 
-
-
-### SELECT doctorname from doctors where specialization_id ='S02';
-
-| doctorname       |
-|------------------|
-| verti            | 
-
-### select patient.*,doctors.* from patient inner join doctors on patient.specialization_id = doctors.specialization_id where patient_id=100;
-
-| patient_id | patientname | age | phone_no   | admitted_for   | specialization_id | doctor_id | doctorname | specialization_id |
-|------------|-------------|-----|------------|----------------|-------------------|-----------|------------|-------------------|
-| 100        | john        | 10  | 8807544789 | stomach flu    | S01               | D01       | suraj      | S01               |
 
 
 
